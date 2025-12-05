@@ -1,29 +1,33 @@
+# ⚡ Solar Projeto - Sistema de Gerenciamento de Orçamentos
 
-# Setup Docker Com Laravel 10 e  PHP 8.1
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=flat-square&logo=laravel)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=flat-square&logo=php)](https://php.net)
+[![Docker](https://img.shields.io/badge/Docker-✓-2496ED?style=flat-square&logo=docker)](https://docker.com)
 
-### Passo a passo
-- Baixe o .Zip do projeto
+Sistema de backend API para gerenciamento de clientes, equipamentos solares e orçamentos.
 
+## 🐳 Setup Docker com Laravel 10 e PHP 8.1
 
-Crie o Arquivo .env
-```sh
+### Passo a Passo
+
+1. **Baixe o projeto**
+```bash
+git clone https://github.com/clayasf/solar-projeto.git
+cd solar-projeto
+Crie o arquivo .env
+
+bash
 cp .env.example .env
-```
+Atualize as variáveis no .env:
 
-
-Atualize as variáveis de ambiente do arquivo .env
-```
-APP_NAME=Laravel
+env
+APP_NAME="Solar Project Management"
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
 APP_URL=http://localhost:8989
 
-LOG_CHANNEL=stack
-LOG_DEPRECATIONS_CHANNEL=null
-LOG_LEVEL=debug
-
-#Especificaçoes do docker-compose.yml
+# Configurações do Docker
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
@@ -31,70 +35,89 @@ DB_DATABASE=sistema_gestao
 DB_USERNAME=root
 DB_PASSWORD=root
 
-BROADCAST_DRIVER=log
-CACHE_DRIVER=file
-FILESYSTEM_DISK=local
-QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
+# Outras configurações...
+Suba os containers
 
-MEMCACHED_HOST=127.0.0.1
-
-REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-
-MAIL_MAILER=smtp
-MAIL_HOST=mailhog
-MAIL_PORT=1025
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS=null
-MAIL_FROM_NAME="${APP_NAME}"
-
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=us-east-1
-AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=false
-
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
-PUSHER_APP_CLUSTER=mt1
-
-MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
-```
-
-
-Suba os containers do projeto
-```sh
+bash
 docker-compose up -d
-```
-
-
 Acesse o container app
-```sh
+
+bash
 docker-compose exec app bash
-```
+Instale as dependências (dentro do container)
 
-
-Instale as dependências do projeto
-```sh
+bash
 composer install
-```
+Gere a chave do Laravel
 
-
-Gere a key do projeto Laravel
-```sh
+bash
 php artisan key:generate
-```
+Execute migrações e seeders
 
-
+bash
+php artisan migrate
+php artisan db:seed
 Acesse o projeto
-[http://localhost:8989](http://localhost:8989)
+👉 http://localhost:8989
 
+📡 Endpoints da API
+👥 Clientes
+text
+GET    /api/clientes          # Listar todos
+POST   /api/clientes          # Criar novo
+🔧 Equipamentos
+text
+GET    /api/equipamentos      # Listar (com categorias)
+POST   /api/equipamentos      # Criar novo
+💰 Orçamentos
+text
+POST   /api/orcamentos        # Criar com equipamentos
+GET    /api/orcamentos/{id}   # Ver com total calculado
+Exemplo criação orçamento:
 
-github: https://github.com/VictorPadovan1997/setup-docker-laravel-10
+json
+{
+  "cliente_id": 1,
+  "equipamentos": [
+    {"equipamento_id": 1, "quantidade": 2}
+  ]
+}
+🎯 Features
+✅ CRUD completo (Clientes, Equipamentos, Orçamentos)
+
+✅ Enum TipoEquipamento com categorias automáticas
+
+✅ Cálculo automático de total em orçamentos
+
+✅ Validações com FormRequests
+
+✅ Seeders para dados iniciais
+
+✅ Docker pronto para uso
+
+🔧 Comandos Úteis (dentro do container)
+bash
+# Servidor
+php artisan serve --host=0.0.0.0 --port=8989
+
+# Banco de dados
+php artisan migrate
+php artisan db:seed
+
+# Limpeza
+php artisan config:clear
+php artisan cache:clear
+
+# Testar API
+curl http://localhost:8989/api/clientes
+🧪 Testando
+bash
+# Listar clientes
+curl http://localhost:8989/api/clientes
+
+# Criar orçamento
+curl -X POST http://localhost:8989/api/orcamentos \
+  -H "Content-Type: application/json" \
+  -d '{"cliente_id":1,"equipamentos":[{"equipamento_id":1,"quantidade":2}]}'
+👤 Autor: Clayton Freitas
+📁 Repositório: github.com/clayasf/solar-projeto
