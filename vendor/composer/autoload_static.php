@@ -179,6 +179,8 @@ class ComposerStaticInit121ea3a2fffe49b3ef9aa4d064b28c19
         'A' =>
         array (
             'Application\\' => 12,
+            'App\\Models\\' => 11,
+            'App\\Infrastructure\\Eloquent\\' => 28,
             'App\\' => 4,
         ),
     );
@@ -512,16 +514,16 @@ class ComposerStaticInit121ea3a2fffe49b3ef9aa4d064b28c19
         ),
         'Database\\Seeders\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/app/Infrastructure/Database/Seeders',
+            0 => __DIR__ . '/../..' . '/database/seeders',
             1 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
         ),
         'Database\\Migrations\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/app/Infrastructure/Database/Migrations',
+            0 => __DIR__ . '/../..' . '/database/migrations',
         ),
         'Database\\Factories\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/app/Infrastructure/Database/Factories',
+            0 => __DIR__ . '/../..' . '/database/factories',
             1 => __DIR__ . '/..' . '/laravel/pint/database/factories',
         ),
         'Cron\\' =>
@@ -544,6 +546,14 @@ class ComposerStaticInit121ea3a2fffe49b3ef9aa4d064b28c19
         array (
             0 => __DIR__ . '/../..' . '/app/Application',
         ),
+        'App\\Models\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/app/Models',
+        ),
+        'App\\Infrastructure\\Eloquent\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/app/Infrastructure/Eloquent',
+        ),
         'App\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -553,8 +563,14 @@ class ComposerStaticInit121ea3a2fffe49b3ef9aa4d064b28c19
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Domain\\Enums\\TipoEquipamento' => __DIR__ . '/../..' . '/app/Domain/Enums/TipoEquipamento.php',
+        'App\\Domain\\Enums\\TipoInstalacao' => __DIR__ . '/../..' . '/app/Domain/Enums/TipoInstalacao.php',
+        'App\\Domain\\Enums\\UF' => __DIR__ . '/../..' . '/app/Domain/Enums/UF.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ClienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClienteController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\EquipamentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EquipamentoController.php',
+        'App\\Http\\Controllers\\OrcamentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrcamentoController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -565,6 +581,10 @@ class ComposerStaticInit121ea3a2fffe49b3ef9aa4d064b28c19
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\StoreClienteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreClienteRequest.php',
+        'App\\Http\\Requests\\StoreEquipamentoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreEquipamentoRequest.php',
+        'App\\Http\\Requests\\UpdateClienteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateClienteRequest.php',
+        'App\\Http\\Requests\\UpdateEquipamentoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateEquipamentoRequest.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -680,6 +700,10 @@ class ComposerStaticInit121ea3a2fffe49b3ef9aa4d064b28c19
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Database\\Factories\\EquipamentoFactory' => __DIR__ . '/../..' . '/database/factories/EquipamentoFactory.php',
+        'Database\\Seeders\\ClienteSeeder' => __DIR__ . '/../..' . '/database/seeders/ClienteSeeder.php',
+        'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\EquipamentoSeeder' => __DIR__ . '/../..' . '/database/seeders/EquipamentoSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
