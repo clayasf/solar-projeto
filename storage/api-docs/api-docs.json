@@ -1,0 +1,148 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Solar Projeto API",
+        "description": "API para gestão de projetos de energia solar",
+        "contact": {
+            "name": "Suporte Solar Projeto",
+            "email": "contato@solarprojeto.com.br"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8989",
+            "description": "Servidor local via Docker"
+        }
+    ],
+    "paths": {
+        "/api/projetos": {
+            "get": {
+                "tags": [
+                    "Projetos"
+                ],
+                "summary": "Listar todos os projetos",
+                "description": "Retorna a lista de todos os projetos cadastrados",
+                "operationId": "getProjetos",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Projeto": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "cliente_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "uf": {
+                        "type": "string",
+                        "example": "SP"
+                    },
+                    "tipo_instalacao": {
+                        "type": "string",
+                        "example": "Cerâmico"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Cliente": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nome": {
+                        "type": "string",
+                        "example": "João Silva"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "joao@email.com"
+                    },
+                    "telefone": {
+                        "type": "string",
+                        "example": "(11) 99999-9999"
+                    },
+                    "cpf_cnpj": {
+                        "type": "string",
+                        "example": "123.456.789-09"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Equipamento": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nome": {
+                        "type": "string",
+                        "example": "Painel Solar 550W"
+                    },
+                    "tipo": {
+                        "type": "string",
+                        "example": "Módulo"
+                    },
+                    "preco_unitario": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 899.9
+                    },
+                    "estoque_atual": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "ativo": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Projetos",
+            "description": "Projetos"
+        }
+    ]
+}
