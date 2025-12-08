@@ -39,6 +39,37 @@ class ProjetoController extends Controller
 
     public function store(Request $request): JsonResponse
     {
+        /**
+         * @OA\Post(
+         *      path="/api/projetos",
+         *      operationId="storeProjeto",
+         *      tags={"Projetos"},
+         *      summary="Criar um novo projeto",
+         *      description="Cria um novo projeto de energia solar",
+         *      @OA\RequestBody(
+         *          required=true,
+         *          description="Dados do projeto",
+         *          @OA\JsonContent(
+         *              required={"cliente_id","uf","tipo_instalacao","equipamentos"},
+         *              @OA\Property(property="cliente_id", type="integer", example=1),
+         *              @OA\Property(property="uf", type="string", example="SP"),
+         *              @OA\Property(property="tipo_instalacao", type="string", example="Cerâmico"),
+         *              @OA\Property(property="equipamentos", type="array", @OA\Items(
+         *                  @OA\Property(property="equipamento_id", type="integer", example=1),
+         *                  @OA\Property(property="quantidade", type="integer", example=10)
+         *              ))
+         *          )
+         *      ),
+         *      @OA\Response(
+         *          response=201,
+         *          description="Projeto criado com sucesso"
+         *      ),
+         *      @OA\Response(
+         *          response=422,
+         *          description="Dados inválidos ou estoque insuficiente"
+         *      )
+         * )
+         */
         $tiposInstalacao = array_column(TipoInstalacao::cases(), 'value');
 
         $validated = $request->validate([
@@ -94,12 +125,71 @@ class ProjetoController extends Controller
 
     public function show(Projeto $projeto): JsonResponse
     {
+        /**
+         * @OA\Get(
+         *      path="/api/projetos/{id}",
+         *      operationId="showProjeto",
+         *      tags={"Projetos"},
+         *      summary="Obter detalhes de um projeto",
+         *      description="Retorna os detalhes completos de um projeto específico",
+         *      @OA\Parameter(
+         *          name="id",
+         *          description="ID do projeto",
+         *          required=true,
+         *          in="path",
+         *          @OA\Schema(type="integer")
+         *      ),
+         *      @OA\Response(
+         *          response=200,
+         *          description="Projeto encontrado"
+         *      ),
+         *      @OA\Response(
+         *          response=404,
+         *          description="Projeto não encontrado"
+         *      )
+         * )
+         */
         $projeto->load(['cliente', 'equipamentos']);
         return response()->json($projeto);
     }
 
     public function update(Request $request, Projeto $projeto): JsonResponse
     {
+        /**
+         * @OA\Put(
+         *      path="/api/projetos/{id}",
+         *      operationId="updateProjeto",
+         *      tags={"Projetos"},
+         *      summary="Atualizar um projeto",
+         *      description="Atualiza os dados de um projeto existente",
+         *      @OA\Parameter(
+         *          name="id",
+         *          description="ID do projeto",
+         *          required=true,
+         *          in="path",
+         *          @OA\Schema(type="integer")
+         *      ),
+         *      @OA\RequestBody(
+         *          description="Dados a atualizar",
+         *          @OA\JsonContent(
+         *              @OA\Property(property="uf", type="string", example="RJ"),
+         *              @OA\Property(property="tipo_instalacao", type="string", example="Metálico"),
+         *              @OA\Property(property="equipamentos", type="array", @OA\Items(
+         *                  @OA\Property(property="equipamento_id", type="integer", example=1),
+         *                  @OA\Property(property="quantidade", type="integer", example=5)
+         *              ))
+         *          )
+         *      ),
+         *      @OA\Response(
+         *          response=200,
+         *          description="Projeto atualizado com sucesso"
+         *      ),
+         *      @OA\Response(
+         *          response=422,
+         *          description="Dados inválidos"
+         *      )
+         * )
+         */
         $tiposInstalacao = array_column(TipoInstalacao::cases(), 'value');
 
         $validated = $request->validate([
@@ -144,6 +234,30 @@ class ProjetoController extends Controller
 
     public function destroy(Projeto $projeto): JsonResponse
     {
+        /**
+         * @OA\Delete(
+         *      path="/api/projetos/{id}",
+         *      operationId="destroyProjeto",
+         *      tags={"Projetos"},
+         *      summary="Deletar um projeto",
+         *      description="Remove um projeto do sistema",
+         *      @OA\Parameter(
+         *          name="id",
+         *          description="ID do projeto",
+         *          required=true,
+         *          in="path",
+         *          @OA\Schema(type="integer")
+         *      ),
+         *      @OA\Response(
+         *          response=204,
+         *          description="Projeto deletado com sucesso"
+         *      ),
+         *      @OA\Response(
+         *          response=404,
+         *          description="Projeto não encontrado"
+         *      )
+         * )
+         */
         $projeto->delete();
         return response()->json(null, 204);
     }
